@@ -2570,22 +2570,54 @@ a4*506/128 r4*6/128
 
 
 
+def scramble_notes(old_notes):
+
+    if '|' not in old_notes:
+        return old_notes
+
+    notes_split = old_notes.split('\n')
+
+    pipelines = []
+    notelines = []
+    temp = ''
+    for index, ns in enumerate(notes_split):
+        if '| %' in ns:
+            pipelines.append(ns)
+            notelines.append(temp)
+            temp = ''
+        else:
+            temp = temp + ns
+
+    random.shuffle(notelines)
+
+    new_notes = ''
+    for index, n in enumerate(notelines):
+        new_notes = new_notes + '\n' + n
+        if n >= len(pipelines):
+            new_notes = new_notes + '\n' + pipelines[index]
+
+    return new_notes
 
 
     
 
 randno = random.randint(0,len(notes_to_pick) - 1)
 
-
 new_notes = notes_to_pick[randno]
+
+new_notes = scramble_notes(new_notes)
+
 randno2 = random.randint(0,len(notes_to_pick) - 1)
 
-
 new_notes2 = notes_to_pick[randno2]
+
+new_notes2 = scramble_notes(new_notes2)
+
 randno3 = random.randint(0,len(notes_to_pick) - 1)
 
-
 new_notes3 = notes_to_pick[randno3]
+
+new_notes3 = scramble_notes(new_notes3)
 
 randno = random.randint(0,len(insts) - 1)
 new_inst1 = insts[randno]
