@@ -1,4 +1,4 @@
-% Lily was here -- automatically converted by ../../../../lilypond/usr/bin/midi2ly from All The Small Things - Verse.midi
+
 \version "2.14.0"
 
 \layout {
